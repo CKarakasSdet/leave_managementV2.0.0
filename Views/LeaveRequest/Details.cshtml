@@ -5,12 +5,12 @@
 
 
 
-@if (Model.Approved == null)
+@if (Model.Approved == null && !Model.Cancelled)
 {
     <div class="alert alert-warning" role="alert">
         <h4 class="alert-heading">Pending Approval</h4>
         <p>
-            <strong>@Html.DisplayNameFor(model => model.RequestingEmployeeId):</strong> @Model.RequestingEmployee.Firstname @Model.RequestingEmployee.Lastname
+            <strong>@Html.DisplayNameFor(model => model.RequestingEmployeeId)</strong> @Model.RequestingEmployee.Firstname @Model.RequestingEmployee.Lastname
         </p>
         <hr />
         <p>
@@ -20,10 +20,25 @@
 
 }
 
-else if (Model.Approved == true)
+else if (Model.Approved == true && !Model.Cancelled)
 {
     <div class="alert alert-success" role="alert">
         <h4 class="alert-heading">Approved by @Model.ApprovedBy.Firstname @Model.ApprovedBy.Lastname</h4>
+        <p>
+            <strong>@Html.DisplayNameFor(model => model.RequestingEmployeeId)</strong> @Model.RequestingEmployee.Firstname @Model.RequestingEmployee.Lastname
+        </p>
+        <hr />
+        <p>
+            @Html.DisplayNameFor(model => model.DateRequested) @Html.DisplayFor(model => model.DateRequested)
+        </p>
+    </div>
+
+}
+
+else if ((Model.Approved == true && Model.Cancelled == true) || (Model.Approved == null && Model.Cancelled == true))
+{
+    <div class="alert alert-secondary" role="alert">
+        <h4 class="alert-heading">Cancelled </h4>
         <p>
             <strong>@Html.DisplayNameFor(model => model.RequestingEmployeeId):</strong> @Model.RequestingEmployee.Firstname @Model.RequestingEmployee.Lastname
         </p>
@@ -38,7 +53,7 @@ else if (Model.Approved == true)
 else 
 {
     <div class="alert alert-danger" role="alert">
-        <h4 class="alert-heading">Rejected by @Model.ApprovedBy.Firstname @Model.ApprovedBy.Lastname</h4>
+        <h4 class="alert-heading"> Rejected by @Model.ApprovedBy.Firstname @Model.ApprovedBy.Lastname</h4>
         <p>
             <strong>@Html.DisplayNameFor(model => model.RequestingEmployeeId):</strong> @Model.RequestingEmployee.Firstname @Model.RequestingEmployee.Lastname
         </p>
@@ -98,15 +113,18 @@ else
             @Html.DisplayNameFor(model => model.FeedbackForRequestComment)
         </dt>
         <dd class="col-sm-10">
-            @if (Model.Approved == null) { 
-            <div>
-                <textarea asp-for="FeedbackForRequestComment" class="form-control"></textarea>
-                <span asp-validation-for="FeedbackForRequestComment" class="text-danger"></span>
-            </div>
-            } else {
+            @if (Model.Approved == null && !Model.Cancelled)
+            {
+                <div>
+                    <textarea asp-for="FeedbackForRequestComment" class="form-control"></textarea>
+                    <span asp-validation-for="FeedbackForRequestComment" class="text-danger"></span>
+                </div>
+            }
+            else
+            {
 
 
-            @Html.DisplayFor(model => model.FeedbackForRequestComment)
+                @Html.DisplayFor(model => model.FeedbackForRequestComment)
             }
         </dd>
 
@@ -117,7 +135,7 @@ else
 
 <div>
 
-    @if (Model.Approved == null)
+    @if (Model.Approved == null && !Model.Cancelled)
     {
         <a class="btn btn-success" asp-action="ApproveRequest" asp-route-id="@Model.Id">
             <i class="fa fa-check"></i>Approve

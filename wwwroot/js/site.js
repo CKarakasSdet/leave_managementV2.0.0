@@ -7,4 +7,5 @@ $(document).ready(function () {
     $('#tblData').DataTable();
 });
 
-
+var table = $('#table_sort').DataTable();
+table.column('0:visible').order('desc').draw(); 
