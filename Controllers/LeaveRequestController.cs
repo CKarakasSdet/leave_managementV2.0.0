@@ -170,7 +170,7 @@ namespace leave_management.Controllers
         
       
 
-        public IActionResult ApproveRequest(int id)
+        public IActionResult ApproveRequest(int id )
         {
             try
             {
@@ -187,6 +187,8 @@ namespace leave_management.Controllers
                 leaveRequest.ApprovedById = _userManager.GetUserAsync(User).Result.Id;
                 leaveRequest.DateActioned = DateTime.Now;
                 
+                 
+                
                 
 
                 _leaveRequestRepo.Update(leaveRequest);
@@ -196,7 +198,7 @@ namespace leave_management.Controllers
 
 
             }
-            catch (Exception ex)
+            catch (Exception ex) 
             {
                 ModelState.AddModelError("", ex.ToString()); 
                 return RedirectToAction(nameof(Index));
@@ -220,9 +222,9 @@ namespace leave_management.Controllers
                 return RedirectToAction(nameof(Index));
 
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                ModelState.AddModelError("", ex.ToString());
+                ModelState.AddModelError("", "Error occurred with this query. Please try again.");
                 return RedirectToAction(nameof(Index));
             }
 

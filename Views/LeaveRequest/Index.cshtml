@@ -21,7 +21,7 @@
 
 
     <div class="col-md-3">
-        <div class="info-box" >
+        <div class="info-box">
             <span class="info-box-icon bg-warning"><i class="fas fa-exclamation-circle"></i></span>
 
             <div class="info-box-content">
@@ -49,6 +49,26 @@
 
             <div class="info-box-content">
                 <span class="info-box-text">@Model.RejectedRequests</span>
+                <span class="info-box-number">@Html.DisplayNameFor(model => model.RejectedRequests)</span>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="info-box">
+            <span class="info-box-icon bg-danger"><i class="fas fa-times-circle"></i></span>
+
+            <div class="info-box-content">
+                <span class="info-box-text">Cancelled</span>
+                <span class="info-box-number">@Html.DisplayNameFor(model => model.RejectedRequests)</span>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="info-box">
+            <span class="info-box-icon bg-danger"><i class="fas fa-times-circle"></i></span>
+
+            <div class="info-box-content">
+                <span class="info-box-text">Approved then cancelled</span>
                 <span class="info-box-number">@Html.DisplayNameFor(model => model.RejectedRequests)</span>
             </div>
         </div>

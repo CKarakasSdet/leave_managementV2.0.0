@@ -81,7 +81,7 @@ namespace leave_management.Repository
         public bool Save()
         {
            var changes =  _db.SaveChanges();
-            Thread.Sleep(2000);
+           
 
             return changes > 0; 
         }

@@ -115,10 +115,15 @@ else
         <dd class="col-sm-10">
             @if (Model.Approved == null && !Model.Cancelled)
             {
-                <div>
-                    <textarea asp-for="FeedbackForRequestComment" class="form-control"></textarea>
-                    <span asp-validation-for="FeedbackForRequestComment" class="text-danger"></span>
-                </div>
+            <form action="LeaveRequestController/ApproveRequest" method="POST">
+                
+                <textarea  type="text" name="feedback" class="form-control"></textarea>
+                
+
+            </form>
+                
+                    
+                
             }
             else
             {
@@ -137,10 +142,10 @@ else
 
     @if (Model.Approved == null && !Model.Cancelled)
     {
-        <a class="btn btn-success" asp-action="ApproveRequest" asp-route-id="@Model.Id">
+        <a  type="submit" class="btn btn-success" asp-action="ApproveRequest" asp-route-id="@Model.Id">
             <i class="fa fa-check"></i>Approve
         </a>
-        <a class="btn btn-danger" asp-action="RejectRequest" asp-route-id="@Model.Id">
+        <a  type="submit" class="btn btn-danger" asp-action="RejectRequest" asp-route-id="@Model.Id">
             <i class="fa fa-remove"></i>Reject
         </a>
 
@@ -151,4 +156,5 @@ else
         <i class="fa fa-arrow-left"></i>Back to List
     </a>
 </div>
+
 

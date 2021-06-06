@@ -70,9 +70,7 @@ namespace leave_management.Repository
 
         public bool Save()
         {
-            Thread.Sleep(2000);
             var changes = _db.SaveChanges();
-            Thread.Sleep(1000);
             return changes > 0; 
         }
 
