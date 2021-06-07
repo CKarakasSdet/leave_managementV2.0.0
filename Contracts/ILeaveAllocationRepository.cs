@@ -1,15 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using leave_management.Data;
 
 namespace leave_management.Contracts
 {
     public interface ILeaveAllocationRepository : IRepositoryBase<LeaveAllocation> 
     {
-        bool CheckAllocation(int leavetypeid, string employeeid);
+        Task<bool> CheckAllocation(int leavetypeid, string employeeid);
 
-        ICollection<LeaveAllocation> GetLeaveAllocationsByEmployee(string employeeid);
+        Task<ICollection<LeaveAllocation>> GetLeaveAllocationsByEmployee(string employeeid);
 
-        LeaveAllocation GetLeaveAllocationByEmployeeAndType(string employeeid, int leavetypeid);
+        Task<LeaveAllocation> GetLeaveAllocationByEmployeeAndType(string employeeid, int leavetypeid);
     }
 }
