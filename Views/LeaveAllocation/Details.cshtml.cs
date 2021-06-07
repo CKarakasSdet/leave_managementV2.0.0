@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using leave_management.Data;
 using leave_management.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -11,18 +12,18 @@ namespace leave_management.Views.LeaveAllocation
 {
     public class DetailsModel : PageModel
     {
-        private readonly Data.ApplicationDbContext _context;
+        private readonly ApplicationDbContext _context;
 
-        public DetailsModel(Data.ApplicationDbContext context)
+        public DetailsModel(ApplicationDbContext context)
         {
             _context = context;
         }
 
-        public IList<LeaveTypeVM> LeaveTypeVM { get; set; }
+        public IList<LeaveType> LeaveTypes { get; set; }
 
         public async Task OnGetAsync()
         {
-            LeaveTypeVM = await _context.LeaveTypeVM.ToListAsync();
+            LeaveTypes = await _context.LeaveTypes.ToListAsync();
         }
     }
 }

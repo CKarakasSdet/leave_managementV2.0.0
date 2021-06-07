@@ -12,29 +12,15 @@ namespace leave_management.Views.LeaveTypes
 {
     public class DetailsModel : PageModel
     {
-        private readonly leave_management.Data.ApplicationDbContext _context;
+        private readonly ApplicationDbContext _context;
 
-        public DetailsModel(leave_management.Data.ApplicationDbContext context)
+        public DetailsModel(ApplicationDbContext context)
         {
             _context = context;
         }
 
-        public LeaveTypeVM LeaveTypeVM { get; set; }
+        public LeaveType LeaveType { get; set; }
 
-        public async Task<IActionResult> OnGetAsync(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            LeaveTypeVM = await _context.LeaveTypeVM.FirstOrDefaultAsync(m => m.Id == id);
-
-            if (LeaveTypeVM == null)
-            {
-                return NotFound();
-            }
-            return Page();
-        }
+        
     }
 }

@@ -19,11 +19,6 @@ namespace leave_management.Views.LeaveTypes
             _context = context;
         }
 
-        public IList<LeaveTypeVM> LeaveTypeVM { get;set; }
-
-        public async Task OnGetAsync()
-        {
-            LeaveTypeVM = await _context.LeaveTypeVM.ToListAsync();
-        }
+        
     }
 }
